@@ -1,0 +1,6 @@
+beautifulsoup4==4.11.1
+Flask==2.1.1
+python-dotenv==0.20.0
+pytz==2019.3
+requests==2.22.0
+steam==1.2.0
