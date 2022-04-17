@@ -78,7 +78,7 @@ while start > end:
         event_time = event_date_div[1].contents
         event_date_time = event_date + ' ' + event_time[-1]
         event_dt = datetime.strptime(event_date_time, '%b %d, %Y %I:%M%p') + timedelta(hours=3)
-        if int(event_dt.astimezone(timezone).strftime('%s')) <= end:
+        if int(time.mktime(event_dt.timetuple())) <= end:
             continue
 
         last = t[-1]
@@ -98,7 +98,7 @@ while start > end:
                     item=item, full_type=item_type, type=types.rarity, wear=item_wear,
                     stattrack=1 if types.stattrack else 0, souvenir=1 if types.souvenir else 0,
                     date=event_dt.strftime('%Y-%m-%d %I:%M%p'),
-                    datetime=int((event_dt.astimezone(timezone)).strftime('%s')))
+                    datetime=int(time.mktime(event_dt.timetuple())))
                 print(query)
                 cursor.execute(query)
 
@@ -109,7 +109,7 @@ while start > end:
     ts_time = ts_date_time[1].contents
     timestamp = ts_date + ' ' + ts_time[-1]
     ts_format = '%b %d, %Y %I:%M%p'
-    start = int(datetime.strptime(timestamp, ts_format).astimezone(timezone).strftime('%s'))
+    start = int(time.mktime(datetime.strptime(timestamp, ts_format).astimezone(timezone).timetuple()))
 
     time.sleep(1.5)
 
