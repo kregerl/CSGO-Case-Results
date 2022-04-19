@@ -117,6 +117,6 @@ cursor.execute(
     "INSERT OR IGNORE INTO users (steam_id, last_date_requested) SELECT '{username}', MAX(datetime) FROM case_results".format(
         username='AreUThreatningMe'))
 cursor.execute(
-    "UPDATE users SET last_date_requested = (SELECT MAX(datetime) FROM case_results) WHERE name='{username}'".format(
+    "UPDATE users SET last_date_requested = (SELECT MAX(datetime) FROM case_results) WHERE steam_id='{username}'".format(
         username='AreUThreatningMe'))
 conn.commit()
